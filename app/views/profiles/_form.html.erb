@@ -1,0 +1,141 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 well">
+<%= form_for(@profile, html: {multipart: true}) do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :employeeid %><br>
+    <%= f.text_field :employeeid %>
+  </div>
+  <div class="field">
+    <%= f.label :DOB %><br>
+    <%= f.date_select :DOB %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :ready_to_mentor %><br>
+    <%= f.select :ready_to_mentor, %w[true false] , :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :phone_number %><br>
+    <%= f.text_field :phone_number %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br>
+    <%= f.select :level, %w[1 2 3 4 5], :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :previous_manager %><br>
+    <%= f.select :previous_manager, 
+    Profile.where('desgination = ?', "Manager").map { |u| [u.first_name, u.first_name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field">
+    <%= f.label :current_manager %><br>
+    <%= f.select :previous_manager, 
+    Profile.where('desgination = ?', "Manager").map { |u| [u.first_name, u.first_name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field">
+    <%= f.label :experience %><br>
+    <%= f.select :experience, %w[1 2 3 4 5 6 7 8 9 10] %>
+  </div>
+  <div class="field">
+    <%= f.label :domain %><br>
+    <%= f.select :domain, 
+    Domain.all.map { |u| [u.name, u.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field">
+    <%= f.label :hr %><br>
+    <%= f.select :hr, 
+   Profile.where('desgination = ?', "HR").map { |u| [u.first_name, u.first_name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field">
+    <%= f.label :sublocation %><br>
+     <%= f.select :sublocation, 
+    Sublocation.all.map { |u| [u.name, u.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field">
+    <%= f.label :primary_technology %><br>
+    <%= f.select :primary_technology, 
+    Technology.all.map { |u| [u.name, u.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field">
+    <%= f.label :secondary_technology %><br>
+    <%= f.select :secondary_technology, 
+    Technology.all.map { |u| [u.name, u.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field">
+    <%= f.label :desgination %><br>
+    <%= f.select :desgination, 
+    Desgination.all.map { |u| [u.name, u.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  
+  <% if @profile.avatar? %>
+  <%= image_tag(@profile.avatar.thumb) %>
+    <div class="field">
+      <%= f.label :remove_avatar %>
+      <%= f.check_box :remove_avatar %>
+    </div>
+  <% end %>
+  
+  <div class="picture">
+      <%= f.label :Image %><br>
+      <%= f.file_field :avatar, accept: 'image/jpg,image/png,image/gif' %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+    $('.picture').bind('change', function() {
+        size_in_megabyte = this.files[0].size/1024/1024;
+        if (size_in_megabyte > 5) {
+            alert('Maximum file size is 5MB. Please choose a smaller file.')
+        }
+    });
+</script>

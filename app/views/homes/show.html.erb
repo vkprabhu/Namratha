@@ -1,0 +1,393 @@
+
+<% if current_user.profile.desgination == "Employee" %>
+
+<div class="show_recipe grow">
+    <%= image_tag(@profile.avatar.url, size: "250x250", class: "gravatar pull-right thumbnail") if @profile.avatar? %>
+</div>
+
+<p>
+  <strong>Employeeid:</strong>
+  <%= @profile.employeeid %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @profile.DOB %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @profile.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @profile.last_name %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @profile.phone_number %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @profile.level %>
+</p>
+
+<p>
+  <strong>Previous manager:</strong>
+  <%= @profile.previous_manager %>
+</p>
+
+<p>
+  <strong>Current manager:</strong>
+  <%= @profile.current_manager %>
+</p>
+
+<p>
+  <strong>Experience:</strong>
+  <%= @profile.experience %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @profile.domain %>
+</p>
+
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("p#show").fadeToggle(3000);
+    });
+});
+</script>
+
+<p>
+  <strong>Hr:</strong>
+  <%= @profile.hr %>
+  <p id="show" style="display:none">
+  <% hr_profiles =  @profiles.where('first_name = ?', @profile.hr) %>
+  <% hr = hr_profiles.first %>
+  <%= "Name:" +  name =  hr.first_name %>
+  <%= "Email:" + email =  hr.user.email %>
+  <%= "Phone number:" + phone_number =  hr.phone_number %>
+  </p>
+  <button>contact details</button>
+</p>
+
+<p id="hideshow">
+  
+</p>
+
+<p>
+  <strong>Sublocation:</strong>
+  <%= @profile.sublocation %>
+</p>
+
+<p>
+  <strong>Primary technology:</strong>
+  <%= @profile.primary_technology %>
+</p>
+
+<p>
+  <strong>Secondary technology:</strong>
+  <%= @profile.secondary_technology %>
+</p>
+
+<p>
+  <strong>Designation:</strong>
+  <%= @profile.desgination %>
+</p>
+
+<%= link_to 'Edit', edit_profile_path(@profile), class: "btn btn-default" %>
+<!--
+<p>
+  <strong>User:</strong>
+  <%#= @profile.user_id %>
+</p>
+-->
+<% elsif current_user.profile.desgination == "Manager" %>
+
+
+<div class="show_recipe grow">
+    <%= image_tag(@profile.avatar.url(), size: "250x250" ,  class: "gravatar pull-right thumbnail") if @profile.avatar? %>
+</div>
+
+<p>
+  <strong>Employeeid:</strong>
+  <%= @profile.employeeid %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @profile.DOB %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @profile.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @profile.last_name %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @profile.phone_number %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @profile.level %>
+</p>
+
+<p>
+  <strong>Previous manager:</strong>
+  <%= @profile.previous_manager %>
+</p>
+
+<p>
+  <strong>Current manager:</strong>
+  <%= @profile.current_manager %>
+</p>
+
+<p>
+  <strong>Experience:</strong>
+  <%= @profile.experience %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @profile.domain %>
+</p>
+
+<script>
+$(document).ready(function(){
+    $("button#bt").click(function(){
+        $("p#show").fadeToggle(3000);
+    });
+});
+</script>
+
+<p>
+  <strong>Hr:</strong>
+  <%= @profile.hr %>
+  <p id="show" style="display:none">
+  <% hr_profiles =  @profiles.where('first_name = ?', @profile.hr) %>
+  <% hr = hr_profiles.first %>
+  <%= "Name:" +  name =  hr.first_name %>
+  <%= "Email:" + email =  hr.user.email %>
+  <%= "Phone number:" + phone_number =  hr.phone_number %>
+  </p>
+  <button id="bt">contact details</button>
+</p>
+
+
+<p>
+  <strong>Sublocation:</strong>
+  <%= @profile.sublocation %>
+</p>
+
+<p>
+  <strong>Primary technology:</strong>
+  <%= @profile.primary_technology %>
+</p>
+
+<p>
+  <strong>Secondary technology:</strong>
+  <%= @profile.secondary_technology %>
+</p>
+
+<p>
+  <strong>Designation:</strong>
+  <%= @profile.desgination %>
+</p>
+<!--
+<p>
+  <strong>User:</strong>
+  <%#= @profile.user_id %>
+</p>
+-->
+
+<%= link_to "Team members", homes_index_path, class: "btn btn-default" %>
+<%= link_to "Post Job", new_projectrequirement_path, class: "btn btn-default" %>
+<%= link_to "Job posted", projectrequirements_path, class: "btn btn-default" %>
+<%= link_to 'Edit', edit_profile_path(@profile), class: "btn btn-default" %>
+<hr />
+
+<h3>Do you want to learn something new today? Here is the list!</h3>
+<hr />
+<script>
+$(document).ready(function(){
+    $('#example').DataTable();
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $("button#btn").click(function(){
+        $("div#table").fadeToggle(3000);
+    });
+});
+</script>
+
+<div id="table" style="display:none">
+<table id="example">
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Employeeid</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Phone number</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+     <% @profiles_ready_to_mentor.each do |profile| %>
+      <tr>
+        <td class="grow">
+          <% if profile.avatar? %>
+            <%= image_tag(profile.avatar.url(), size: "100x100", class: "gravatar thumbnail")  %>
+          <% else %>
+            <h6>No photo available</h6>
+          <% end %>
+        </td>
+        <td><%= profile.employeeid %></td>
+        <td><%= profile.first_name %></td>
+        <td><%= profile.last_name %></td>
+        <td><%= profile.phone_number %></td>
+        <td><%= link_to "Show", profile_path(profile), class: "btn btn-default" %></td>
+      <% end %>
+  </body>
+</table>
+</div>
+<button id="btn">Do you need mentoring?</button>
+<hr />
+
+<h3>Level of Employee's under <%= current_user.profile.first_name + " " + current_user.profile.last_name %></h3>
+<hr />
+<% data = {} %>
+<% @profiles.each do |p| %>
+  <% data["Level1"] = @profiles.where('level = ?', 1 ).count %>
+  <% data["Level2"] = @profiles.where('level = ?', 2 ).count %>
+  <% data["Level3"] = @profiles.where('level = ?', 3 ).count %>
+  <% data["Level4"] = @profiles.where('level = ?', 4 ).count %>
+  <% data["Level5"] = @profiles.where('level = ?', 5 ).count %>
+<% end %>
+<%= column_chart(data) %>
+
+
+<% else %>
+
+
+<div class="show_recipe grow">
+    <%= image_tag(@profile.avatar.url(), size: "250x250" ,  class: "gravatar pull-right thumbnail") if @profile.avatar? %>
+</div>
+
+<p>
+  <strong>Employeeid:</strong>
+  <%= @profile.employeeid %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @profile.DOB %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @profile.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @profile.last_name %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @profile.phone_number %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @profile.level %>
+</p>
+
+<p>
+  <strong>Previous manager:</strong>
+  <%= @profile.previous_manager %>
+</p>
+
+<p>
+  <strong>Current manager:</strong>
+  <%= @profile.current_manager %>
+</p>
+
+<p>
+  <strong>Experience:</strong>
+  <%= @profile.experience %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @profile.domain %>
+</p>
+
+<p>
+  <strong>Sublocation:</strong>
+  <%= @profile.sublocation %>
+</p>
+
+<p>
+  <strong>Primary technology:</strong>
+  <%= @profile.primary_technology %>
+</p>
+
+<p>
+  <strong>Secondary technology:</strong>
+  <%= @profile.secondary_technology %>
+</p>
+
+<p>
+  <strong>Designation:</strong>
+  <%= @profile.desgination %>
+</p>
+
+
+<%= link_to 'Edit', edit_profile_path(@profile), class: "btn btn-default" %>
+<%= link_to "All Profiles", homes_index_path, class: "btn btn-default"  %>
+
+
+<% level = {} %>
+  <% profiles = @profiles.where('location = ? and sublocation = ?', @profile.location, @profile.sublocation) %>
+  <% level["Level1"] = profiles.where('level = ?', 1 ).count %>
+  <% level["Level2"] = profiles.where('level = ?', 2 ).count %> 
+  <% level["Level3"] = profiles.where('level = ?', 3 ).count %> 
+  <% level["Level4"] = profiles.where('level = ?', 4 ).count %> 
+  <% level["Level5"] = profiles.where('level = ?', 5 ).count %> 
+<%= column_chart(level) %>
+
+<% domain = {} %>
+  <% @domains.each do |d| %>
+    <% domain["#{d.name}"] = @profiles.where('location = ? and sublocation = ? and domain = ? ', current_user.profile.location, current_user.profile.sublocation, d.name ).count %> 
+  <% end  %>
+  <%#= data %>
+<%= column_chart(domain) %>
+
+<% working_vs_bench = {} %>
+<% bench = @locations.where('current_manager = ?', " ").count %>
+<% working = @locations.count - bench %>
+<% working_vs_bench["working"] = working %> 
+<% working_vs_bench["bench"] = bench %>
+<%= column_chart(working_vs_bench) %>
+<%#= geo_chart Medal.group(:country).count %>
+
+<% end %>
+
+

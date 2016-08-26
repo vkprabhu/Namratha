@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<% if current_user.profile.desgination == "Manager" %>
+<h1>Listing Employees under <%= current_user.profile.first_name + current_user.profile.last_name %></h1>
+<% elsif current_user.profile.desgination == "HR" %>
+<h1>Employee's under HR <%= current_user.profile.first_name + " " + current_user.profile.last_name %></h1>
+<% end %>
+
+
+<script>
+$(document).ready(function(){
+    $('#example').DataTable();
+});
+</script>
+
+<%#= will_paginate @profiles %>
+
+<table id="example">
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Employeeid</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Phone number</th>
+      <th>Level</th> 
+      <th>Experience</th>
+      <th>Domain</th>
+      <th>Primary technology</th>
+      <th>Secondary technology</th>
+      <th colspan="2">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td class="grow">
+          <% if profile.avatar? %>
+            <%= image_tag(profile.avatar.url(), size: "100x100", class: "gravatar thumbnail")  %>
+          <% else %>
+            <h6>No photo available</h6>
+          <% end %>
+        </td>
+        <td><%= profile.employeeid %></td>
+        <td><%= profile.first_name %></td>
+        <td><%= profile.last_name %></td>
+        <td><%= profile.phone_number %></td>
+        <td><%= profile.level %></td> 
+        <td><%= profile.experience %></td>
+        <td><%= profile.domain %></td>
+        <td><%= profile.primary_technology %></td>
+        <td><%= profile.secondary_technology %></td>
+        <td><%= link_to 'Show', profile, class: "btn btn-default" %></td>
+        <% if current_user.profile.desgination == "Manager" %>
+          <td><%= link_to 'Release',profiles_release_path(profile: profile) , class: "btn btn-default" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= will_paginate @profiles %>
+
+<%= link_to "Home", root_path, class: " btn btn-default"%>
+<%#= link_to 'New Profile', new_profile_path %>

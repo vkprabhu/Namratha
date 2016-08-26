@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sublocation.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @sublocation.location_id %>
+</p>
+
+<%= link_to 'Edit', edit_sublocation_path(@sublocation) %> |
+<%= link_to 'Back', sublocations_path %>

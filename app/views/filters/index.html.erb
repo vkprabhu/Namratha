@@ -1,0 +1,46 @@
+
+<h1>Listing profiles matching your's requirement</h1>
+
+<script>
+  $(document).ready(function(){
+    $('#myTable').DataTable();
+  });
+</script>
+
+<table id="myTable">
+  <thead>
+    <tr>
+      <th>Level</th>
+      <th>Experience</th>
+      <th>Domain</th>
+      <th>Desgination</th>
+      <th>Primary technology</th>
+      <th>Secondary technology</th>
+      <th>Location</th>
+      <th>Sublocation</th>
+      <th colspan="2">Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projectrequirements.each do |projectrequirement| %>
+      <tr>
+        <td><%= projectrequirement.level %></td>
+        <td><%= projectrequirement.experience %></td>
+        <td><%= projectrequirement.domain %></td>
+        <td><%= projectrequirement.desgination%></td>
+        <td><%= projectrequirement.primary_technology %></td>
+        <td><%= projectrequirement.secondary_technology %></td>
+        <td><%= projectrequirement.location %></td>
+        <td><%= projectrequirement.sublocation %></td>
+        <td><%= link_to 'Show', projectrequirement, class: "btn btn-default" %></td>
+        <td><%= link_to 'Destroy', projectrequirement, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Projectrequirement', new_projectrequirement_path, class: "btn btn-default" %>
+<%= link_to "Home", root_path, class: "btn btn-default" %>

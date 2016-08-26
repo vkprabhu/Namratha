@@ -1,0 +1,1 @@
+json.extract! @profile, :id, :employeeid, :DOB, :first_name, :last_name, :phone_number, :level, :previous_manager, :current_manager, :experience, :domain, :hr, :sublocation_id, :primary_technology, :secondary_technology, :designation_id, :user_id, :created_at, :updated_at

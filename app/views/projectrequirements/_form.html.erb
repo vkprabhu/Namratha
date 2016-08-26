@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 well">
+<%= form_for(@projectrequirement) do |f| %>
+  <% if @projectrequirement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@projectrequirement.errors.count, "error") %> prohibited this projectrequirement from being saved:</h2>
+
+      <ul>
+      <% @projectrequirement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :level %><br>
+    <%= f.select :level, %w[1 2 3 4 5], :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :experience %><br>
+    <%= f.select :experience, %w[1 2 3 4 5 6 7 8 9 10], :prompt => true %>
+  </div>
+  <div class="field"> 
+    <%= f.label :domain %><br>
+    <%= f.select :domain, 
+    Domain.all.map { |d| [d.name, d.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field">
+    <%= f.label :desgination %><br>
+    <%= f.select :desgination, 
+    Desgination.all.map { |d| [d.name, d.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field">
+    <%= f.label :primary_technology %><br>
+    <%= f.select :primary_technology, 
+    Technology.all.map { |t| [t.name, t.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field"> 
+    <%= f.label :secondary_technology %><br>
+    <%= f.select :secondary_technology, 
+    Technology.all.map { |t| [t.name, t.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.select :location, 
+    Location.all.map { |t| [t.name, t.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+    <%#= f.collection_select(:location_id, Location.all, :id, :name, :prompt => true) %>
+  </div>
+  <div class="field">
+    <%= f.label :sublocation %><br>
+    <%= f.select :sublocation, 
+    Sublocation.all.map { |t| [t.name, t.name] },
+                 { :prompt => true },
+                 { class: 'chosen-select' }
+    %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+</div>

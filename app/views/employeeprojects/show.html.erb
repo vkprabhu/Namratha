@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @employeeproject.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @employeeproject.end_date %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @employeeproject.domain %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @employeeproject.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_employeeproject_path(@employeeproject) %> |
+<%= link_to 'Back', employeeprojects_path %>

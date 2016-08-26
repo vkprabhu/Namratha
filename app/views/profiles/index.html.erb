@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Profiles</h1>
+
+<table id="example">
+  <thead>
+    <tr>
+      <th>Employeeid</th>
+      <th>Dob</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Phone number</th>
+      <th>Level</th> 
+      <th>Previous manager</th>
+      <th>Current manager</th>
+      <th>Experience</th>
+      <th>Domain</th>
+      <th>Hr</th>
+      <th>Sublocation</th>
+      <th>Primary technology</th>
+      <th>Secondary technology</th>
+      <th>Designation</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.employeeid %></td>
+        <td><%= profile.DOB %></td>
+        <td><%= profile.first_name %></td>
+        <td><%= profile.last_name %></td>
+        <td><%= profile.phone_number %></td>
+        <td><%= profile.level %></td> 
+        <td><%= profile.previous_manager %></td>
+        <td><%= profile.current_manager %></td>
+        <td><%= profile.experience %></td>
+        <td><%= profile.domain %></td>
+        <td><%= profile.hr %></td>
+        <td><%= profile.sublocation_id %></td>
+        <td><%= profile.primary_technology %></td>
+        <td><%= profile.secondary_technology %></td>
+        <td><%= profile.designation_id %></td>
+        <td><%= profile.user_id %></td>
+        <td><%= link_to 'Show', profile %></td>
+        <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profile', new_profile_path %>

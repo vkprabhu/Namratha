@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  level: 1
+  experience: 1.5
+  domain: MyString
+  desgination_id: 1
+  primary_technology: MyString
+  secondary_technology: MyString
+  location_id: MyString
+  integer: MyString
+  sublocation_id: 1
+
+two:
+  level: 1
+  experience: 1.5
+  domain: MyString
+  desgination_id: 1
+  primary_technology: MyString
+  secondary_technology: MyString
+  location_id: MyString
+  integer: MyString
+  sublocation_id: 1
