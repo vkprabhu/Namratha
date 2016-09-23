@@ -22,7 +22,15 @@ class ProjectrequirementsController < ApplicationController
         level = @projectrequirement.level
         experience = @projectrequirement.experience
         category = @projectrequirement.desgination
-        @bench_profiles = Profile.where('current_manager = ?', "")
+        @bench_profile = Profile.where('current_manager = ?', "")
+        @profiles = []
+        begin 
+          Deliver.all.each do |p|
+            @profiles << p.profile
+          end
+        rescue ActiveRecord::RecordNotFound
+       end
+        @bench_profiles = @bench_profile + @profiles
         @req_sublocation_profiles = []
         @req_sublocation_location_profiles = []
         @req_sublocation_location_primary_technology_profiles = []

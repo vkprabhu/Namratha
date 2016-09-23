@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :delivers
   get 'profiles/release'
   get 'profiles/select'
   get 'profiles/send_mes'

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822191057) do
+ActiveRecord::Schema.define(version: 20160827071103) do
+
+  create_table "delivers", force: :cascade do |t|
+    t.date     "date_of_release"
+    t.integer  "profile_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "desginations", force: :cascade do |t|
     t.string   "name"

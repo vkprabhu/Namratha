@@ -1,0 +1,24 @@
+<%= form_for(@deliver) do |f| %>
+  <% if @deliver.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@deliver.errors.count, "error") %> prohibited this deliver from being saved:</h2>
+
+      <ul>
+      <% @deliver.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date_of_release %><br>
+    <%= f.date_select :date_of_release %>
+  </div>
+  
+  <%= f.hidden_field :profile_id, :value => @profile.id %>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

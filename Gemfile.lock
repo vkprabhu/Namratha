@@ -58,6 +58,7 @@ GEM
       coffee-rails (>= 3.2)
       railties (>= 3.0)
       sass-rails (>= 3.2)
+    chronic (0.10.2)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -78,6 +79,8 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
+    javan-whenever (0.3.7)
+      chronic (>= 0.2.3)
     jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -190,6 +193,7 @@ DEPENDENCIES
   chosen-rails
   coffee-rails (~> 4.1.0)
   devise
+  javan-whenever
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks

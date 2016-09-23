@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date of release:</strong>
+  <%= @deliver.date_of_release %>
+</p>
+
+<p>
+  <strong>Profile:</strong>
+  <%= @deliver.profile_id %>
+</p>
+
+<%= link_to 'Edit', edit_deliver_path(@deliver) %> |
+<%= link_to 'Back', delivers_path %>

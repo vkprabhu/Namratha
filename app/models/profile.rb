@@ -1,7 +1,8 @@
 class Profile < ActiveRecord::Base
     belongs_to :user
+    has_one :deliver
     #before_save: { self.full_name = self.first_name + " " + self.last_name }
-   # validates :employeeid, presence: true
+    #validates :employeeid, presence: true
     #validates :DOB, presence: true
     #validates :first_name, presence: true, length: { minimum: 10 , maximum: 12 }
     #validates :last_name, presence: true

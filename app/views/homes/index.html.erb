@@ -54,6 +54,7 @@ $(document).ready(function(){
         <td><%= link_to 'Show', profile, class: "btn btn-default" %></td>
         <% if current_user.profile.desgination == "Manager" %>
           <td><%= link_to 'Release',profiles_release_path(profile: profile) , class: "btn btn-default" %></td>
+          <td><%#= link_to 'Set release date', new_deliver_path(profile: profile), class: 'btn btn-default' %></td>
         <% end %>
       </tr>
     <% end %>
